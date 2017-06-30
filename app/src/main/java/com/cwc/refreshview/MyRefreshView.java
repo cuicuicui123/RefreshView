@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -56,6 +57,7 @@ public class MyRefreshView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.e("lws", "ondraw");
         super.onDraw(canvas);
         int height = mHeight < mMaxHeight ? mHeight : mMaxHeight;
         canvas.drawRect(0, 0, mWidth, height, mPaint);
@@ -76,21 +78,18 @@ public class MyRefreshView extends View {
 
     public void reset(){
         mIsReseting = true;
-        requestLayout();
         invalidate();
     }
 
     public void resetView(){
-        if (mHeight > (mMaxHeight + 10)) {
-            mHeight -= (mHeight - mMaxHeight) / 10;
+        if (mHeight > (mMaxHeight + 5)) {
+            mHeight -= 10;
             requestLayout();
-            invalidate();
         } else {
             mHeight = mMaxHeight;
             mLocalHeight = mMaxHeight;
             mIsReseting = false;
             requestLayout();
-            invalidate();
         }
     }
 

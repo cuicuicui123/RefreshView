@@ -79,9 +79,13 @@ public class RefreshScrollView extends ScrollView {
                         mIsDraging = true;
                     }
                     break;
-                default:
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
                     mMyRefreshView.reset();
                     mIsDraging = false;
+                    break;
+                default:
+
                     break;
             }
         }
